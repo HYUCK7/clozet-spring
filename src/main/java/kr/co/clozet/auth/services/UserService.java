@@ -1,18 +1,23 @@
-package kr.co.clozet.common.services;
+package kr.co.clozet.auth.services;
 
-import kr.co.clozet.common.domains.User;
+import kr.co.clozet.auth.domains.User;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.web.bind.annotation.*;
 
-import java.awt.print.Pageable;
 import java.util.List;
 import java.util.Optional;
 
 public interface UserService {
     String login(User user);
 
+    String put(User user);
+
     List<User> findAll();
+
     List<User> findAll(Sort sort);
+
     Page<User> findAll(Pageable pageable);
 
     long count();
@@ -21,9 +26,7 @@ public interface UserService {
 
     String save(User user);
 
-    Optional<User> findById(String userId);
+    Optional<User> findById(@PathVariable String userid);
 
-    boolean existsById(String userId);
-
-    Page<User> findAll(org.springframework.data.domain.Pageable pageable);
+    boolean existsById(String userid);
 }

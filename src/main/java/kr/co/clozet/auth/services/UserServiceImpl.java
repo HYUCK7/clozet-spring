@@ -1,24 +1,27 @@
-package kr.co.clozet.common.services;
+package kr.co.clozet.auth.services;
 
-import kr.co.clozet.common.domains.User;
-import kr.co.clozet.common.repositories.UserRepository;
+import kr.co.clozet.auth.domains.User;
+import kr.co.clozet.auth.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.awt.print.Pageable;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class UserServiceImpl implements UserService {
-
-    private final UserRepository userRepository;
-
+public class UserServiceImpl implements UserService{
+    private final UserRepository repository;
     @Override
     public String login(User user) {
+        return null;
+    }
+
+    @Override
+    public String put(User user) {
         return null;
     }
 
@@ -53,18 +56,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional<User> findById(String userId) {
+    public Optional<User> findById(String userid) {
         return Optional.empty();
     }
 
     @Override
-    public boolean existsById(String userId) {
+    public boolean existsById(String userid) {
         return false;
     }
-
-    @Override
-    public Page<User> findAll(org.springframework.data.domain.Pageable pageable) {
-        return null;
-    }
-
 }

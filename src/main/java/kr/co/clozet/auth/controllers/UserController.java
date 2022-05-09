@@ -1,9 +1,8 @@
-package kr.co.clozet.common.controllers;
+package kr.co.clozet.auth.controllers;
 
-import kr.co.clozet.common.domains.User;
-import kr.co.clozet.common.services.UserService;
+import kr.co.clozet.auth.domains.User;
+import kr.co.clozet.auth.services.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -20,49 +19,57 @@ public class UserController {
     private final UserService service;
 
     @PostMapping("/login")
-    public String login(@RequestBody User user){
+    public String login(@RequestBody User user) {
         return service.login(user);
     }
+
     @GetMapping("/logout")
-    public String logout(){
+    public String logout() {
         return "";
     }
+    @PutMapping("/put")
+    public String put(@RequestBody User user) {
+        return service.put(user);
+    }
+
+    // Embeded Methods
     @GetMapping("/findAll")
     public List<User> findAll() {
         return service.findAll();
     }
+
     @GetMapping("/findAll/sort")
     public List<User> findAll(Sort sort) {
         return service.findAll(sort);
     }
+
     @GetMapping("/findAll/pageable")
     public Page<User> findAll(Pageable pageable) {
         return service.findAll(pageable);
     }
+
     @GetMapping("/count")
     public long count() {
         return service.count();
     }
-    @PutMapping("/put")
-    public String put(@RequestBody User user){
-        return "";
-    }
-    @DeleteMapping("/delete")
-    public String delete(User user) {
-        return service.delete(user);
 
+    @DeleteMapping("/delete")
+    public String delete(@RequestBody User user) {
+        return service.delete(user);
     }
+
     @PostMapping("/join")
     public String save(@RequestBody User user) {
         return service.save(user);
+    }
 
+    @GetMapping("/findById/{userid}")
+    public Optional<User> findById(@PathVariable String userid) {
+        return service.findById(userid);
     }
-    @GetMapping("/findById/{userId}")
-    public Optional<User> findById(@PathVariable String userId) {
-        return service.findById(userId);
-    }
-    @GetMapping("/existsById/{userId}")
-    public boolean existsById(@PathVariable String userId) {
-        return service.existsById(userId);
+
+    @GetMapping("/existsById/{userid}")
+    public boolean existsById(@PathVariable String userid) {
+        return service.existsById(userid);
     }
 }
