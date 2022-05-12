@@ -1,16 +1,11 @@
 package kr.co.clozet.common.lambda;
 
-import static kr.co.clozet.common.dataStructure.AppleList.Apple;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.function.BiPredicate;
-import java.util.function.Function;
-import java.util.function.Predicate;
+import java.io.File;
+import java.util.function.*;
 
 public class Lambda {
     public static void main(String[] args) {
-        //System.out.println(Lambda.integer("900"));
+        System.out.println(Lambda.integer("900"));
         //System.out.println(string(900));
         //System.out.println(string(900));
         //System.out.println(string(new Apple.Builder().origin("영동").color("RED").price(3000).build()));
@@ -21,11 +16,13 @@ public class Lambda {
         //);
         //System.out.println(equals("홍길동", "홍길동"));
         System.out.println(array(8));
+        System.out.println(random2(1,6));
     }
+
     // 전달값 많으면 스프레드 연산자로
-    public static int integer(String arg){
+    public static int integer(String a){ //interger.parseint()
         Function<String, Integer> f = Integer::parseInt;
-        return f.apply(arg);
+        return f.apply(a);
     }
 
     public static String string(Object o){
@@ -41,5 +38,19 @@ public class Lambda {
     public static int[] array(int arg){
         Function<Integer, int[]> f = int[] :: new;
         return f.apply(arg);
+    }
+    //int player = (int)(Math.random()*6)+1, int p = random(1,6)
+    public static double random(){
+        Supplier<Double> s = Math::random;
+        return (s.get() * 6) +1;
+    }
+    public static Integer random2(int min, int max){
+        BiFunction<Integer, Integer, Integer> s = (integer, integer2) -> (int)(Math.random() * integer) + integer2;
+        return s.apply(min, max);
+
+    }
+    public static File makeFile(String a){
+        Function<String, File> p = File::new;
+        return p.apply(a);
     }
 }
