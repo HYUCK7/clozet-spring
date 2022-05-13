@@ -29,4 +29,6 @@ public interface UserService {
     Optional<User> findById(@PathVariable String userid);
 
     boolean existsById(String userid);
+
+    List<User> findByUserName(String name);
 }

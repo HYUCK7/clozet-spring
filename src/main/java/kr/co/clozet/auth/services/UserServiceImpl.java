@@ -2,6 +2,7 @@ package kr.co.clozet.auth.services;
 
 import kr.co.clozet.auth.domains.User;
 import kr.co.clozet.auth.repositories.UserRepository;
+import kr.co.clozet.common.dataStructure.Box;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -63,5 +64,14 @@ public class UserServiceImpl implements UserService{
     @Override
     public boolean existsById(String userid) {
         return false;
+    }
+
+    @Override
+    public List<User> findByUserName(String name){
+        List<User> ls = repository.findAll();
+        Box<String, User> box = new Box<>();
+        //box.findByUserName(ls, name);
+        //ls.stream().filter(...)
+        return null;
     }
 }
