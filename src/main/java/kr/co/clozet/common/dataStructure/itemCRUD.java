@@ -3,11 +3,13 @@ package kr.co.clozet.common.dataStructure;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import org.junit.jupiter.api.Test;
 
 import java.util.Map;
 
 public class itemCRUD {
-    public static void main(String[] args) {
+    @Test
+    void itemTest() {
 
     }
     @Data @AllArgsConstructor

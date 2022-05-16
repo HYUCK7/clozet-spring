@@ -1,10 +1,13 @@
 package kr.co.clozet.common.algorithm;
 
+import org.junit.jupiter.api.Test;
+
 import java.util.Random;
 import java.util.Scanner;
 
 public class Q2__Sort {
-    public static void main(String[] args) {
+    @Test
+    void Q2Test() {
         Scanner scanner = new Scanner(System.in);
         while (true){
             System.out.println("1버블 2삽입 3선택 4퀵 5병합 6매직 7지그재그 8직각별 9정삼각별");

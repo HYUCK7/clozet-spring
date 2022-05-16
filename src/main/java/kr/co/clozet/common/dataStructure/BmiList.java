@@ -1,13 +1,15 @@
 package kr.co.clozet.common.dataStructure;
 
 import lombok.Data;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
 // height, weight, SSN(900101-1)
 public class BmiList {
-    public static void main(String[] args) {
+    @Test
+    void BmiTest() {
 
     }
     @Data

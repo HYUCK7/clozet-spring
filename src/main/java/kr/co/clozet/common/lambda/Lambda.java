@@ -1,10 +1,13 @@
 package kr.co.clozet.common.lambda;
 
+import org.junit.jupiter.api.Test;
+
 import java.io.File;
 import java.util.function.*;
 
 public class Lambda {
-    public static void main(String[] args) {
+    @Test
+    void myLambda() {
         System.out.println(Lambda.integer("900"));
         //System.out.println(string(900));
         //System.out.println(string(900));

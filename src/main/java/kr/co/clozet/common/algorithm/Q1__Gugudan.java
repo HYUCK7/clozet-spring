@@ -1,6 +1,7 @@
 package kr.co.clozet.common.algorithm;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import org.junit.jupiter.api.Test;
 
 import java.util.Random;
 import java.util.Scanner;
@@ -25,7 +26,8 @@ class Calculator{
     }
 }
 public class Q1__Gugudan {
-    public static void main(String[] args) {
+    @Test
+    void Q1Test() {
         // 03소수 quiz03prime()
         Scanner scanner = new Scanner(System.in);
         while (true){

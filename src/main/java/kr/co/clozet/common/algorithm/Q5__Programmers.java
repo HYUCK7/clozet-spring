@@ -1,9 +1,12 @@
 package kr.co.clozet.common.algorithm;
 
+import org.junit.jupiter.api.Test;
+
 import java.util.Scanner;
 
 public class Q5__Programmers {
-    public static void main(String[] args) { // 03소수 quiz03prime()
+    @Test
+    void Q5Test() { // 03소수 quiz03prime()
         Scanner scanner = new Scanner(System.in);
         while (true){
             System.out.println("1.정렬 2.큐 3.스택 4.이진분류 5.동적프로그래밍 \n" +

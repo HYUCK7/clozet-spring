@@ -1,7 +1,10 @@
 package kr.co.clozet.common.lambda;
 
+import org.junit.jupiter.api.Test;
+
 public class Calculator {
-    public static void main(String... args) {
+    @Test
+    void calcTest() {
         var s= "계산기";
         System.out.println(s);
         Calculator c = new Calculator();

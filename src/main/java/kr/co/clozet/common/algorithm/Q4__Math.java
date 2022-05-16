@@ -1,9 +1,12 @@
 package kr.co.clozet.common.algorithm;
 
+import org.junit.jupiter.api.Test;
+
 import java.util.Scanner;
 
 public class Q4__Math {
-    public static void main(String[] args) {
+    @Test
+    void Q4Test() {
         Scanner scanner = new Scanner(System.in);
         while (true){
             System.out.println("1.소수 ");

@@ -1,9 +1,12 @@
 package kr.co.clozet.common.algorithm;
 
+import org.junit.jupiter.api.Test;
+
 import java.util.Scanner;
 
 public class Q3__Team {
-    public static void main(String[] args) {
+    @Test
+    void Q3Test() {
         Scanner scanner = new Scanner(System.in);
         while (true){
             System.out.println("1.팀별 과제 2.팀장이 맡은 과제 3.큐를 담당한 사람 4.팀원별 과제 수");

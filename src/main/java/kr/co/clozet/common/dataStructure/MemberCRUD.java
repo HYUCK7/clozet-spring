@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.junit.jupiter.api.Test;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.Entity;
@@ -14,7 +15,8 @@ import java.util.Map;
 import java.util.Scanner;
 // 알고리즘 테스트에서는 이렇게 one page로 작성함.
 public class MemberCRUD {
-    public static void main(String[] args) {
+    @Test
+    void memberTest() {
         MemberService service = new MemberServiceImpl();
         Scanner scanner = new Scanner(System.in);
         while (true){
