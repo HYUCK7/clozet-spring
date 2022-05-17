@@ -28,11 +28,12 @@ public class PersonStream {
                     : 122 - Integer.parseInt(ssn.substring(0, 2));
             return String.format("이름: %s, 성별: %s, 나이:%s", name, gender, age);
         }
-    }
 
-    @FunctionalInterface interface PersonService {
-        Person search(List<Person> persons);
-    }
+        @FunctionalInterface
+        interface PersonService {
+            Person search(List<Person> persons);
+        }
+
         @Test
         void personStreamTest() {
             List<Person> arr = Arrays.asList(
@@ -47,4 +48,5 @@ public class PersonStream {
             System.out.println(ps.search(arr));
         }
     }
+}
 

@@ -7,10 +7,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.junit.jupiter.api.Test;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class MaxMin {
     @Builder
@@ -28,13 +30,23 @@ public class MaxMin {
     }
 
     @FunctionalInterface private interface SolutionService {
-        public String solution (List<Integer> list);
+       Solution solution (Solution s);
     }
-
     @Test
-    void testSolution(){
-        List<Integer> list = Arrays.asList(3, 1, 9, 5, 10);
-        SolutionService sol = l -> "";
-        System.out.println(sol.solution(list));
+    void testSolution() {
+        int[] arr = {3, 1, 9, 45, 18};
+        SolutionService sol = e -> {
+            int min = 10;
+            for (int i : e.getArr()) {
+                if (i < min) min = i;
+            }
+            int max = 10;
+            for (int i : e.getArr()) {
+                if (i > max) max = i;
+            }
+            return Solution.builder().min(min).max(max).build();
+        };
+        Solution s = Solution.builder().arr(arr).build();
+        System.out.println(sol.solution(s));
     }
 }
