@@ -1,4 +1,4 @@
 package kr.co.clozet.board.domains;
 
-public class Board {
+public class Board12 {
 }

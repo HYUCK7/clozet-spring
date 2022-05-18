@@ -8,8 +8,9 @@ import javax.persistence.*;
 @Data
 @Entity
 @Component
-@Table(name = "articles")
-public class Article {
+@Table(name = "article12s")
+
+public class Article12 {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(nullable = false) private String project;
@@ -19,3 +20,4 @@ public class Article {
     @Column(nullable = false) private String progress;
     @Column(nullable = false) private String action;
 }
+

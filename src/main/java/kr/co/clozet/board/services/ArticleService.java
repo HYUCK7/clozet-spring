@@ -1,25 +1,24 @@
 package kr.co.clozet.board.services;
 
-import kr.co.clozet.board.domains.Article;
+import kr.co.clozet.board.domains.Article12;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface ArticleService{
-    List<Article> findAll();
+    List<Article12> findAll();
 
-    List<Article> findAll(Sort sort);
+    List<Article12> findAll(Sort sort);
 
-    Page<Article> findAll(Pageable pageable);
+    Page<Article12> findAll(Pageable pageable);
 
 
 
     long count();
 
-    String save(Article article);
+    String save(Article12 article);
 
-    String delete(Article article);
+    String delete(Article12 article);
 }
