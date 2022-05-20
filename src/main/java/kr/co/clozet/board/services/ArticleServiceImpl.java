@@ -1,6 +1,6 @@
 package kr.co.clozet.board.services;
 
-import kr.co.clozet.board.domains.Article12;
+import kr.co.clozet.board.domains.Article;
 import kr.co.clozet.board.repositories.ArticleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -10,6 +10,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -17,17 +18,17 @@ public class ArticleServiceImpl implements ArticleService{
     private final ArticleRepository articleRepository;
 
     @Override
-    public List<Article12> findAll() {
+    public List<Article> findAll() {
         return articleRepository.findAll();
     }
 
     @Override
-    public List<Article12> findAll(Sort sort) {
+    public List<Article> findAll(Sort sort) {
         return articleRepository.findAll(sort);
     }
 
     @Override
-    public Page<Article12> findAll(Pageable pageable) {
+    public Page<Article> findAll(Pageable pageable) {
         return articleRepository.findAll(pageable);
     }
 
@@ -37,14 +38,23 @@ public class ArticleServiceImpl implements ArticleService{
     }
 
     @Override
-    public String save(Article12 article) {
-        articleRepository.save(article);
-        return "";
+    public String save(Article article) {
+        return null;
+    }
+    @Override
+    public String delete(Article article) {
+        return null;
     }
 
     @Override
-    public String delete(Article12 article) {
-        articleRepository.delete(article);
-        return "";
+    public Optional<Article> findById(String articleId) {
+        return Optional.empty();
     }
+
+    @Override
+    public boolean existsById(String articleId) {
+        return false;
+    }
+
+
 }

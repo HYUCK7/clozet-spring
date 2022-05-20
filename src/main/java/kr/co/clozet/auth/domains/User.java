@@ -1,8 +1,8 @@
 package kr.co.clozet.auth.domains;
 
 import com.sun.istack.NotNull;
+import kr.co.clozet.board.domains.Article;
 import lombok.*;
-import org.springframework.data.repository.cdi.Eager;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;

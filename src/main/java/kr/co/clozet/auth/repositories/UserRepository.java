@@ -7,11 +7,12 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 interface UserCustomRepository{
+
     void update(User user);
     String Login(User user);
 }
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long>, UserCustomRepository {
+public interface UserRepository extends JpaRepository<User, Long>{
 
 }
