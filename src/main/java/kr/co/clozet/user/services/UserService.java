@@ -1,6 +1,6 @@
-package kr.co.clozet.auth.services;
+package kr.co.clozet.user.services;
 
-import kr.co.clozet.auth.domains.User;
+import kr.co.clozet.user.domains.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;

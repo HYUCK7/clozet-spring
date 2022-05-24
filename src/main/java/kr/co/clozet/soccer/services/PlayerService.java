@@ -1,6 +1,5 @@
 package kr.co.clozet.soccer.services;
 
-import kr.co.clozet.auth.domains.User;
 import kr.co.clozet.soccer.domains.Player;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;

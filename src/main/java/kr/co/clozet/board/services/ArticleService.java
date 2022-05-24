@@ -1,6 +1,5 @@
 package kr.co.clozet.board.services;
 
-import kr.co.clozet.auth.domains.User;
 import kr.co.clozet.board.domains.Article;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;

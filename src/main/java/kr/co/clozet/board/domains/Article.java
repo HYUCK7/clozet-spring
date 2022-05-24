@@ -1,7 +1,7 @@
 package kr.co.clozet.board.domains;
 
 import com.sun.istack.NotNull;
-import kr.co.clozet.auth.domains.User;
+import kr.co.clozet.user.domains.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

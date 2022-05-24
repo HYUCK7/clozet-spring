@@ -1,6 +1,6 @@
 package kr.co.clozet.common.dataStructure;
 
-import kr.co.clozet.auth.domains.User;
+import kr.co.clozet.user.domains.User;
 import lombok.Data;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
@@ -9,9 +9,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Consumer;
-import java.util.function.Function;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 @Component @Data @Lazy

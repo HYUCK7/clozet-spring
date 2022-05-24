@@ -1,9 +1,8 @@
-package kr.co.clozet.auth.domains;
+package kr.co.clozet.user.domains;
 
 import com.sun.istack.NotNull;
 import kr.co.clozet.board.domains.Article;
 import lombok.*;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -13,7 +12,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-@Component
 @Entity
 @Table(name="users")
 
@@ -30,4 +28,8 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     List<Article> articles = new ArrayList<>();
+
+    @ElementCollection (fetch = FetchType.EAGER)
+    public List<Role> roles;
+
 }

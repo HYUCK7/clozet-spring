@@ -1,7 +1,7 @@
-package kr.co.clozet.auth.controllers;
+package kr.co.clozet.user.controllers;
 
-import kr.co.clozet.auth.domains.User;
-import kr.co.clozet.auth.services.UserService;
+import kr.co.clozet.user.domains.User;
+import kr.co.clozet.user.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

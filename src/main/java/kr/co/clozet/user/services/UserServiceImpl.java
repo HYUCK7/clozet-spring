@@ -1,7 +1,7 @@
-package kr.co.clozet.auth.services;
+package kr.co.clozet.user.services;
 
-import kr.co.clozet.auth.domains.User;
-import kr.co.clozet.auth.repositories.UserRepository;
+import kr.co.clozet.user.domains.User;
+import kr.co.clozet.user.repositories.UserRepository;
 import kr.co.clozet.common.dataStructure.Box;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

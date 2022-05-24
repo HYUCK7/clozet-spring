@@ -1,8 +1,7 @@
-package kr.co.clozet.security.domains;
+package kr.co.clozet.auth.domains;
 
 import lombok.Builder;
 import lombok.Getter;
-import org.springframework.stereotype.Component;
 
 @Getter @Builder
 public class Messenger {

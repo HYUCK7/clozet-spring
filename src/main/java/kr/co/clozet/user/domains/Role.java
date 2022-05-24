@@ -1,4 +1,4 @@
-package kr.co.clozet.auth.domains;
+package kr.co.clozet.user.domains;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

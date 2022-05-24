@@ -1,6 +1,5 @@
 package kr.co.clozet.soccer.services;
 
-import kr.co.clozet.auth.domains.User;
 import kr.co.clozet.soccer.domains.Player;
 import kr.co.clozet.soccer.repositories.PlayerRepository;
 import lombok.RequiredArgsConstructor;
