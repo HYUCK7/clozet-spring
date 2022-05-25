@@ -3,6 +3,7 @@ package kr.co.clozet.common.lambda;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
+import java.util.List;
 import java.util.function.*;
 
 public class Lambda {
@@ -56,4 +57,9 @@ public class Lambda {
         Function<String, File> p = File::new;
         return p.apply(a);
     }
+    public static long longParse(String s){
+        Function<String, Long> f = Long::parseLong;
+        return f.apply(s);
+    }
+
 }
