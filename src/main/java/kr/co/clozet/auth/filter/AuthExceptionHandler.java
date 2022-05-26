@@ -21,67 +21,68 @@ public class AuthExceptionHandler {
     @ExceptionHandler(RuntimeException.class) // 런타임 예외 발생 시
     protected ResponseEntity<Messenger> handleRuntimeException(RuntimeException e){
         log.info("handleRuntimeException", e);
-
-        Messenger response = Messenger.builder().code("test").message(e.getMessage())
-                            .build();
-        return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(Messenger.builder().code("test").message(e.getMessage())
+                .build(), HttpStatus.UNAUTHORIZED);
     }
 
     @ExceptionHandler(SecurityException.class)
     protected ResponseEntity<Messenger> handleSecurityException(SecurityException e){
         log.info("handleSecurityException",e);
 
-        Messenger response = Messenger.builder()
+        return new ResponseEntity<>(Messenger.builder()
                 .code(ErrorCode.AUTHENTICATION_FAILED.getCode())
-                .message(e.getMessage())
-                .build();
-        return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
+                .message(e.getMessage()).build(), HttpStatus.UNAUTHORIZED);
     }
 
     @ExceptionHandler(LoginRunnerException.class)
     protected ResponseEntity<Messenger> handleLoginRunnerException(LoginRunnerException e){
         log.info("handleLoginRunnerException",e);
 
-        Messenger response = Messenger.builder()
+       // Messenger response = Messenger.builder()
+               // .code(ErrorCode.LOGIN_FAILED.getCode())
+                //.message(ErrorCode.LOGIN_FAILED.getMsg())
+               // .build();
+        return new ResponseEntity<>(Messenger.builder()
                 .code(ErrorCode.LOGIN_FAILED.getCode())
                 .message(ErrorCode.LOGIN_FAILED.getMsg())
-                .build();
-        return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
+                .build(),
+                HttpStatus.UNAUTHORIZED);
     }
 
     @ExceptionHandler(BadCredentialsException.class)
     protected ResponseEntity<Messenger> handleBadCredentialsException(BadCredentialsException e){
         log.info("handleBadCredentialsException",e);
 
-        Messenger response = Messenger.builder()
+       // Messenger response = Messenger.builder()
+                //.code(ErrorCode.ACCESS_DENIED.getCode())
+                //.message(ErrorCode.ACCESS_DENIED.getMsg())
+                //.build();
+        return new ResponseEntity<>(Messenger.builder()
                 .code(ErrorCode.ACCESS_DENIED.getCode())
                 .message(ErrorCode.ACCESS_DENIED.getMsg())
-
-                .build();
-        return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
+                .build(),
+                HttpStatus.UNAUTHORIZED);
     }
 
     @ExceptionHandler(AccessDeniedException.class)
     protected ResponseEntity<Messenger> handleAccessDeniedException(AccessDeniedException e){
         log.info("handleAccessDeniedException",e);
 
-        Messenger response = Messenger.builder()
+        return new ResponseEntity<>(Messenger.builder()
                 .code(ErrorCode.ACCESS_DENIED.getCode())
                 .message(ErrorCode.ACCESS_DENIED.getMsg())
-
-                .build();
-        return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
+                .build(),
+                HttpStatus.UNAUTHORIZED);
     }
 
     @ExceptionHandler(InsufficientAuthenticationException.class)
     protected ResponseEntity<Messenger> handleInsufficientAuthenticationException(InsufficientAuthenticationException e){
         log.info("handleAInsufficientAuthenticationException",e);
 
-        Messenger response = Messenger.builder()
+        return new ResponseEntity<>(Messenger.builder()
                 .code(ErrorCode.AUTHENTICATION_FAILED.getCode())
                 .message(ErrorCode.AUTHENTICATION_FAILED.getMsg())
-
-                .build();
-        return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
+                .build(),
+                HttpStatus.UNAUTHORIZED);
     }
 }

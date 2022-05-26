@@ -12,7 +12,6 @@ spring:
       hibernate:
         format_sql: true #To beautify or pretty print the SQL
         show_sql: true #show sql
-        dialect: org.hibernate.dialect.MariaDBDialect
 
 security:
   jwt:
@@ -21,7 +20,7 @@ security:
       expiration-length: 3600000
 
 server:
-  port:8080
+  port: 8080
 
 logging:
   level:

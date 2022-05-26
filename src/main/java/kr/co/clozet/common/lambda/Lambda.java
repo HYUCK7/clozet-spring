@@ -3,6 +3,9 @@ package kr.co.clozet.common.lambda;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
+import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.function.*;
 
@@ -61,5 +64,8 @@ public class Lambda {
         Function<String, Long> f = Long::parseLong;
         return f.apply(s);
     }
-
+    public static Object date() {
+        Supplier<Object> s = LocalDate::now;
+        return s.get();
+    }
 }

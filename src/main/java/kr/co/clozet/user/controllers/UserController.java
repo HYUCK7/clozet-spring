@@ -1,10 +1,12 @@
 package kr.co.clozet.user.controllers;
 
+import io.swagger.annotations.*;
 import kr.co.clozet.auth.domains.Messenger;
 import kr.co.clozet.user.domains.User;
 import kr.co.clozet.user.domains.UserDto;
 import kr.co.clozet.user.services.UserService;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -14,15 +16,25 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin(origins = "*", allowedHeaders = "*")
+@Api(tags = "users")
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/users")
 @RequiredArgsConstructor
 public class UserController {
 
     private final UserService service;
+    private final ModelMapper modelMapper;
 
+        // @ApiResponse(code = 400, message = "Something Wrong"),
+        // @ApiResponse(code = 422, message = "중복된 ID")
     @PostMapping("/login")
-    public ResponseEntity<UserDto> login(@RequestBody User user) {
+    @ApiOperation(value = "${UserController.Login")
+    @ApiResponses(value = {
+            @ApiResponse(code = 400, message = "Something Wrong"),
+            @ApiResponse(code = 422, message = "중복된 ID")
+    })
+    public ResponseEntity<UserDto> login(@ApiParam("Login User")@RequestBody UserDto user) {
         return ResponseEntity.ok(service.login(user));
     }
 
@@ -32,7 +44,7 @@ public class UserController {
     }
 
     @PutMapping("/put")
-    public ResponseEntity<Messenger> put(@RequestBody User user) {
+    public ResponseEntity<Messenger> put(@RequestBody UserDto user) {
         return ResponseEntity.ok(service.put(user));
     }
 
@@ -58,13 +70,21 @@ public class UserController {
     }
 
     @DeleteMapping("/delete")
-    public Messenger delete(@RequestBody User user) {
+    public Messenger delete(@RequestBody UserDto user) {
         return service.delete(user);
     }
 
+
     @PostMapping("/join")
-    public Messenger save(@RequestBody User user) {
-        return service.save(user);
+    @ApiOperation(value = "${UserController.join")
+    @ApiResponses(value = {
+            @ApiResponse(code = 400, message = "Something Wrong"),
+            @ApiResponse(code = 403, message = "승인거절"),
+            @ApiResponse(code = 422, message = "중복된 ID")
+    })
+    public ResponseEntity<Messenger> save(@ApiParam("Join User") @RequestBody UserDto user) {
+        System.out.println("회원가입 정보: " + user.toString());
+        return ResponseEntity.ok(service.save(user));
     }
 
     @GetMapping("/findById/{userid}")

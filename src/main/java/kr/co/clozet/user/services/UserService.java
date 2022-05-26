@@ -12,9 +12,9 @@ import java.util.List;
 import java.util.Optional;
 // 로그인
 public interface UserService {
-    UserDto login(User user);
+    Messenger put(UserDto user);
 
-    Messenger put(User user);
+    UserDto login(UserDto user);
 
     List<User> findAll();
 
@@ -24,9 +24,9 @@ public interface UserService {
 
     Messenger count();
 
-    Messenger delete(User user);
+    Messenger delete(UserDto user);
 
-    Messenger save(User user);
+    Messenger save(UserDto user);
 
     Optional<User> findById(@PathVariable String userid);
 
@@ -34,5 +34,5 @@ public interface UserService {
 
     List<User> findByUserName(String name);
 
-    Messenger logout(User user);
+    Messenger logout(UserDto user);
 }

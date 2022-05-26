@@ -3,7 +3,6 @@ package kr.co.clozet.user.services;
 import kr.co.clozet.auth.configs.AuthProvider;
 import kr.co.clozet.auth.domains.Messenger;
 import kr.co.clozet.auth.exception.SecurityRuntimeException;
-import kr.co.clozet.common.lambda.Lambda;
 import kr.co.clozet.user.domains.Role;
 import kr.co.clozet.user.domains.User;
 import kr.co.clozet.user.domains.UserDto;
@@ -24,7 +23,7 @@ import java.util.Optional;
 
 import static kr.co.clozet.common.lambda.Lambda.longParse;
 import static kr.co.clozet.common.lambda.Lambda.string;
-
+import static kr.co.clozet.common.lambda.Lambda.date;
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService{
@@ -34,19 +33,24 @@ public class UserServiceImpl implements UserService{
     private final ModelMapper modelMapper; // 엔티티와 DTO를 Change
 
     @Override
-    public UserDto login(User user) {
+    public UserDto login(UserDto paramUser) {
         try{
-            UserDto userDto = modelMapper.map(user, UserDto.class);  // user Repository와 UserDTO에 대한 매핑
             // 변수 밖에 없기 때문에, Class에 담는다.
-            User findUser = repository.findByUsername(user.getUsername()).orElse(null);
-            String pw = repository.findByUsername(user.getUsername()).get().getPassword();
-            boolean checkPassword = encoder.matches(user.getPassword(),pw);
-            String username = user.getUsername();
-            List<Role> roles = findUser.getRoles();
-
-            String token = checkPassword ? provider.createToken(username, roles) : "Wrong Password";
-            userDto.setToken(token);
-            return userDto;
+            UserDto returnUser = new UserDto();
+            String username = paramUser.getUsername();
+            User findUser = repository.findByUsername(username).orElse(null);
+            if(findUser != null) {
+                boolean checkPassword = encoder.matches(paramUser.getPassword(), findUser.getPassword());
+                if (checkPassword) {
+                    returnUser = modelMapper.map(findUser, UserDto.class);  // user Repository와 UserDTO에 대한 매핑
+                    String token =  provider.createToken(username, returnUser.getRoles());
+                    returnUser.setToken(token);
+                } else {
+                    String token = "FAILURE";
+                    returnUser.setToken(token);
+                }
+            }
+            return returnUser;
             // 1vs1로 같은 속성 끼리 치환을 함. (누락된 건 없어야 함) map, reduce, filter
         } catch (Exception e){
             throw new SecurityRuntimeException("유효하지 않은 ID/PW", HttpStatus.UNPROCESSABLE_ENTITY);
@@ -54,7 +58,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public Messenger put(User user) {
+    public Messenger put(UserDto user) {
         return null;
     }
 
@@ -79,13 +83,14 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public Messenger delete(User user) {
+    public Messenger delete(UserDto user) {
         return Messenger.builder().message("").build();
 
     }
 
     @Override
-    public Messenger save(User user) {
+    public Messenger save(UserDto user) {
+        System.out.println("서비스로 전달된 회원가입 정보 : +" + user.toString());
         // optional<User> findByUsername(String username) 레퍼지토리 메소드 -> 이 중 null이면 사용가능.
         // optional value 가져오기 -> get orElse olElseGet
         String result = "";
@@ -93,7 +98,14 @@ public class UserServiceImpl implements UserService{
         if(repository.findByUsername(user.getUsername()).isEmpty()) {
             List<Role> list = new ArrayList<>();
             list.add(Role.USER);
-            repository.save(User.builder().password(encoder.encode(user.getPassword())).roles(list).build());
+            repository.save(User.builder()
+                    .username(user.getUsername())
+                    .name(user.getName())
+                    .regDate(user.getRegDate())
+                    .email(user.getEmail())
+                    .password(encoder.encode(user.getPassword()))
+                    .roles(list)
+                    .build());
             result = "SUCCESS";
         }else{
             result = "FAIL";
@@ -123,7 +135,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public Messenger logout(User user) {
+    public Messenger logout(UserDto user) {
         return null;
     }
 }
